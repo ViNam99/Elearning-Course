@@ -1,0 +1,67 @@
+.footer {
+  padding: 150px 0;
+  display: block;
+  background: url(/img/footer_bg.png) no-repeat center;
+  @include styleText($color-gray-0, $default-fontsize, $default-fontWeight);
+  h3 {
+    color: $color-white-0;
+  }
+  .nav-item {
+    a {
+      padding: $padding-1 0;
+      width: 100%;
+      @include styleText($color-gray-0, $default-fontsize, $default-fontWeight);
+      &:hover {
+        @include styleText(
+          $color-orange-0,
+          $default-fontsize,
+          $default-fontWeight
+        );
+      }
+    }
+  }
+  &__intro {
+    p {
+      padding: $padding-2 0 !important;
+    }
+    .nav-item {
+      a {
+        background: $color-black-1 !important;
+        margin-right: $margin-2 !important;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        &:hover {
+          background: linear-gradient(
+            90deg,
+            #7c32ff 0%,
+            #c738d8 100%
+          ) !important;
+        }
+      }
+    }
+    svg {
+      color: white;
+    }
+  }
+  &__address {
+    p {
+      margin-top: $margin-3;
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .footer {
+    padding: $padding-3 0 !important;
+    background: url(/img/footer_bg.png) no-repeat center;
+    @include styleText($color-gray-0, $default-fontsize, $default-fontWeight);
+    &__intro {
+      p {
+        padding: $padding-2 0 !important;
+      }
+    }
+    &__courses {
+      margin-top: $padding-2;
+    }
+  }
+}
