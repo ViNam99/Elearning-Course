@@ -1,0 +1,129 @@
+.about {
+  padding: $padding-5 0;
+  &__introduce {
+    font-family: "Poppins", sans-serif;
+    h3 {
+      @include styleText(#2e004b, $fontSize-3 - 2, $default-fontWeight);
+    }
+    p {
+      @include styleText(#727272, $default-fontsize - 2, $default-fontWeight);
+      padding: $padding-4 0;
+      width: 85%;
+      line-height: 30px;
+    }
+    a {
+      color: $color-white-0 !important;
+      cursor: pointer;
+      @include styleButton(
+        #04d2c8,
+        #04d2c8,
+        $padding-3,
+        $padding-4 + 10,
+        $bdRad-3
+      );
+      &:hover {
+        transition: all 0.5s;
+        @include styleHover(
+          $color-white-0 !important,
+          #04d2c8 !important,
+          #04d2c8 !important
+        );
+      }
+    }
+  }
+  &__tutorials {
+    .text__info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: $bdRad-circle;
+      transform: translateY(-$bdRad-circle);
+      span {
+        @include styleText($color-white-0, $fontSize-4, $default-fontWeight);
+      }
+      p {
+        @include styleText(
+          $color-white-0,
+          $fontSize-1 - 2,
+          $default-fontWeight
+        );
+      }
+    }
+    .courses {
+      .inner__courses {
+        width: 270px;
+        height: 270px;
+        border-radius: $bdRad-circle;
+        text-align: center;
+        position: relative;
+        &::before {
+          background: #fd8e5e;
+          border-radius: $bdRad-circle;
+          opacity: 0.7;
+          @include styleBeforeAfter(absolute, "", 100%, 100%, 0, none, none, 0);
+        }
+      }
+    }
+    .courses-blue {
+      border-radius: $bdRad-circle;
+      text-align: center;
+      position: absolute;
+      right: 0;
+      top: -60px;
+      .inner__courses {
+        width: 310px;
+        height: 310px;
+        border-radius: $bdRad-circle;
+        text-align: center;
+        position: relative;
+        &::before {
+          background: #5db2ff;
+          border-radius: $bdRad-circle;
+          opacity: 0.7;
+          @include styleBeforeAfter(absolute, "", 100%, 100%, 0, none, none, 0);
+        }
+      }
+    }
+    .courses-sky {
+      border-radius: $bdRad-circle;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 27%;
+      top: $bdRad-circle;
+      .inner__courses {
+        width: 310px;
+        height: 310px;
+        border-radius: $bdRad-circle;
+        text-align: center;
+        position: relative;
+        &::before {
+          background: #04d2c8;
+          border-radius: $bdRad-circle;
+          opacity: 0.7;
+          @include styleBeforeAfter(absolute, "", 100%, 100%, 0, none, none, 0);
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .about {
+    &__introduce {
+      margin-bottom: $margin-5;
+      h3 {
+        @include styleText(#2e004b, $fontSize-2 + 2, $default-fontWeight);
+      }
+      p {
+        @include styleText(#727272, $default-fontsize, $default-fontWeight);
+        padding: $padding-4 0;
+        width: 100%;
+        line-height: 30px;
+        width: 90%;
+      }
+    }
+    &__tutorials {
+      padding: 50px 0;
+    }
+  }
+}
