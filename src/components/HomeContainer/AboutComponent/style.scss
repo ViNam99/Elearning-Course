@@ -11,8 +11,9 @@
       width: 85%;
       line-height: 30px;
     }
-    a {
+    button {
       color: $color-white-0 !important;
+      outline: none !important;
       cursor: pointer;
       @include styleButton(
         #04d2c8,

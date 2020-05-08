@@ -21,7 +21,7 @@ const AboutComponent = () => {
                 bring upon you’re it beast let you dominion likeness open place
                 day great wherein heaven sixth lesser subdue fowl
               </p>
-              <a>Enroll a Course</a>
+              <button>Enroll a Course</button>
             </div>
           </Col>
           <Col lg={{span:6}} xl={{span : 6 , offset:1}}>
