@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    height: 600px;
     width: 100%;
     .left__child {
       font-family: "Playfair Display", serif;
@@ -26,7 +26,7 @@
     }
   }
   &__right {
-    margin-top: 50px;
+    margin-top: $margin-7 + 30;
     img {
       width: 100%;
       height: 100%;

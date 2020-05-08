@@ -1,4 +1,7 @@
 .header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
   border-bottom: 1px solid $color-black-0;
   background-image: linear-gradient(
     to right,
