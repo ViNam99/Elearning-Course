@@ -1,7 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { classPrefixor } from "../../utils/classPrefixor";
-import { Facebook, YouTube, Twitter, Instagram } from "@material-ui/icons";
+import {
+  FacebookFilled,
+  InstagramFilled,
+  TwitterSquareFilled,
+  YoutubeFilled,
+} from "@ant-design/icons";
 const Footer = () => {
   const prefix = "footer";
   const c = classPrefixor(prefix);
@@ -20,22 +25,22 @@ const Footer = () => {
               <Nav>
                 <Nav.Item>
                   <Nav.Link>
-                    <Facebook />
+                    <FacebookFilled />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Twitter />
+                    <TwitterSquareFilled />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Instagram />
+                    <InstagramFilled />
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <YouTube />
+                    <YoutubeFilled />
                   </Nav.Link>
                 </Nav.Item>
               </Nav>

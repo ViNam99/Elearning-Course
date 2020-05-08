@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { classPrefixor } from "../../utils/classPrefixor";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import PersonIcon from "@material-ui/icons/Person";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+
 const Header = () => {
   const prefix = "header";
   const c = classPrefixor(prefix);
+  const [count, setCount] = useState(0);
   return (
     <header className={prefix}>
       <Container>
@@ -35,14 +36,18 @@ const Header = () => {
               </Nav.Item>
             </Nav>
             <Nav.Item>
-              <Button>
-                <PersonIcon className="mr-1 mb-1" />
-                Login
+              <Button style={{ display: "flex", justifyContent: "center" }}>
+                <UserOutlined className="mt-1 mr-2" />
+                <span>Login</span>
               </Button>
             </Nav.Item>
             <Nav.Item className={c`cart`}>
-              <ShoppingCartIcon />
-              <span>0</span>
+              <ShoppingCartOutlined
+                style={{ fontSize: "25px" }}
+                className="head-example"
+                onClick={() => setCount((count) => count + 1)}
+              />
+              <span className="cart__count">{count}</span>
             </Nav.Item>
           </Navbar.Collapse>
         </Navbar>
