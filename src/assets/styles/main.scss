@@ -6,6 +6,9 @@
 @import "./base/reset.scss";
 @import "./base/customize.scss";
 
+//Page apple here
+@import "../../pages/PageNotFound/style.scss";
+
 //Layout apply here
 @import "../../layout/HeaderDefault/style.scss";
 @import "../../layout/FooterDefault/style.scss";
