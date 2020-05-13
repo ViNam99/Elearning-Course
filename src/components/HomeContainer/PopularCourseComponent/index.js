@@ -23,20 +23,18 @@ const PopularCourseComponent = () => {
     className: "center",
     centerMode: true,
     infinite: true,
+    centerPadding: "60px",
     slidesToShow: 3,
-    autoplay: false,
-    speed: 5000,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
-    arrows: false,
-    dots: false,
+    speed: 500,
+    autoplay: true,
+    arrows: true,
+    dots: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           infinite: true,
-          dots: false,
         },
       },
       {
@@ -44,7 +42,6 @@ const PopularCourseComponent = () => {
         settings: {
           slidesToShow: 2,
           infinite: true,
-          dots: false,
         },
       },
       {
@@ -81,7 +78,9 @@ const PopularCourseComponent = () => {
             />
             <div className="card-body">
               <h4 className="card-title">{course.tenKhoaHoc}</h4>
-              <button className={c`btn`}><span>JOIN NOW</span></button>
+              <button className={c`btn`}>
+                <span>JOIN NOW</span>
+              </button>
             </div>
           </div>
         </div>
@@ -92,7 +91,9 @@ const PopularCourseComponent = () => {
     <section className={prefix}>
       <Container>
         <div className={c`title`}>
-          <h3>Popular Courses <br/> Available Right Now</h3>
+          <h3>
+            Popular Courses <br /> Available Right Now
+          </h3>
           <p>
             Your domain control panel is designed for ease-of-use and allows for
             all aspects of your domains.
