@@ -3,11 +3,24 @@ import { classPrefixor } from "../../utils/classPrefixor";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Menu, Dropdown } from "antd";
 
 const Header = () => {
   const prefix = "header";
   const c = classPrefixor(prefix);
   const [count, setCount] = useState(0);
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <NavLink to="/signin">Sign In</NavLink>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1">
+        <NavLink to="/signup">Sign Up</NavLink>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <header className={prefix}>
       <Container>
@@ -36,11 +49,17 @@ const Header = () => {
               </Nav.Item>
             </Nav>
             <Nav.Item>
-              <Button style={{ display: "flex", justifyContent: "center" }}>
-                <UserOutlined className="mt-1 mr-2" />
-                <span>Login</span>
-              </Button>
+              <Dropdown overlay={menu}>
+                <Button
+                  style={{ display: "flex", justifyContent: "center" }}
+                  className="ant-dropdown-link"
+                >
+                  <UserOutlined className="mt-1 mr-2" />
+                  <span>SignIn / SignUp</span>
+                </Button>
+              </Dropdown>
             </Nav.Item>
+
             <Nav.Item className={c`cart`}>
               <ShoppingCartOutlined
                 style={{ fontSize: "25px" }}

@@ -4,7 +4,7 @@ class CourseService {
   fetchCourseList = () => {
     return axtios.request({
       method: "GET",
-      url: "QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01",
+      url: "QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP08",
     });
   };
 }
