@@ -1,5 +1,10 @@
 //Gọi axios từ bên này
 import axios from "axios";
-export default axios.create({
+
+const instance = axios.create({
   baseURL: "http://elearning0706.cybersoft.edu.vn/api/",
 });
+export const setAuthorization = (token) => {
+   instance.defaults.headers.common.Authorization = `Bearer ${token}`;   
+};
+export default instance;

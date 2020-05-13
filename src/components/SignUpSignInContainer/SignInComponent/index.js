@@ -5,12 +5,13 @@ import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInAction } from "../../../actions/userAction";
+
 const prefix = "signIn";
 const c = classPrefixor(prefix);
 const SignInComponent = ({ props }) => {
-  
   const dispatch = useDispatch();
   const { credentials, err } = useSelector((state) => state.userReducer);
+
   const handleLoginSuccess = () => {
     props.history.replace("/");
   };

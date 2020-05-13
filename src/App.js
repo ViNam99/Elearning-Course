@@ -9,19 +9,21 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import PageNotFound from "./pages/PageNotFound";
 import { CREDENTIAL_TYPE } from "./constants/userConstants";
+import jwtDecode  from 'jwt-decode';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const credentialInfo = JSON.parse(localStorage.getItem("credentials"));
-    if (credentialInfo) {
+    const credentialToken = JSON.parse(localStorage.getItem("credentials"));
+    if (credentialToken) {
+      const dataDecode = jwtDecode(credentialToken);      
       dispatch({
         type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
-        data: credentialInfo,
+        data: dataDecode,
       });
     }
-  }, []);
+  }, [dispatch]);
   return (
     <Router>
       <Switch>

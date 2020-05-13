@@ -4,16 +4,23 @@ import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Menu, Dropdown } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { CREDENTIAL_TYPE } from "../../constants/userConstants";
+
 const Header = () => {
   const prefix = "header";
   const c = classPrefixor(prefix);
   const [count, setCount] = useState(0);
   const { credentials } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
 
   const handleLogOut = () => {
     localStorage.removeItem("credentials");
-    window.location.replace("/");
+    // window.location.reload();
+    dispatch({
+      type : CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
+      data : ""
+    })
   };
   const menu = (
     <Menu>
@@ -71,7 +78,7 @@ const Header = () => {
                     style={{ display: "flex", justifyContent: "center" }}
                     className="ant-dropdown-link"
                   >
-                    <span>Hi, {credentials.taiKhoan}</span>
+                    <span>Hi, {credentials}</span>
                   </Button>
                 </Dropdown>
               </Nav.Item>

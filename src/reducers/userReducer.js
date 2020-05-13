@@ -7,7 +7,11 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS:
-      return { ...state, credentials: action.data };
+      let credentials = { ...state.credentials };
+      action.data !== ""
+        ? (credentials = Object.values(action.data)[0])
+        : (credentials = action.data);
+      return { ...state, credentials };
     case CREDENTIAL_TYPE.FETCH_CREDENTIAL_FAILURE:
       return { ...state, err: action.data };
     default:

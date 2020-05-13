@@ -1,5 +1,4 @@
 import axios from "../utils/axios";
-
 class CourseService {
   fetchCourseList = () => {
     return axios.request({
