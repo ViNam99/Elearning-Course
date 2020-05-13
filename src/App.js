@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./assets/styles/main.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import UserLayout from "./layout/UserLayout";
 import HomePage from "./pages/HomePage";
 import SignUpInLayout from "./layout/SignUpInLayout";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import PageNotFound from "./pages/PageNotFound";
+import { CREDENTIAL_TYPE } from "./constants/userConstants";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const credentialInfo = JSON.parse(localStorage.getItem("credentials"));
+    if (credentialInfo) {
+      dispatch({
+        type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
+        data: credentialInfo,
+      });
+    }
+  }, []);
   return (
     <Router>
       <Switch>

@@ -1,0 +1,57 @@
+.signIn {
+  padding: $padding-4 + 20 0;
+  &__form {
+    border-radius: $bdRad-2;
+    border: 5px solid gainsboro;
+    background: linear-gradient(to right, #0052d4, #4364f7, #6fb1fc);
+    &__left {
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      border-top-left-radius: $bdRad-2;
+      border-bottom-left-radius: $bdRad-2;
+    }
+    &__right {
+      border-top-right-radius: $bdRad-2;
+      border-bottom-right-radius: $bdRad-2;
+      &--inside {
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center !important;
+        .login {
+          width: 80%;
+          margin: 0 auto;
+          box-shadow: 1px 1px 1px 1px gainsboro;
+          padding: $padding-3;
+          background-color: #fff;
+          h3 {
+            color: #4364f7;
+            padding: $padding-1 0 !important;
+          }
+        }
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .ant-form-item-explain {
+          padding: $padding-1 0;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 991px) {
+  .signIn {
+    &__form {
+      .login {
+        margin-bottom: $margin-4;
+      }
+    }
+  }
+}

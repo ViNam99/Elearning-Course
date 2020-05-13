@@ -1,10 +1,10 @@
-import axtios from "../utils/axtios";
+import axios from "../utils/axios";
 
 class CourseService {
   fetchCourseList = () => {
-    return axtios.request({
+    return axios.request({
       method: "GET",
-      url: "QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP08",
+      url: "QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01",
     });
   };
 }

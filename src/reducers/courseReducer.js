@@ -10,7 +10,6 @@ const courseReducer = (state = initialState , action) => {
         case COURSES_TYPE.FETCH_LIST_REQUEST:
             return {...state , loading:true};
         case COURSES_TYPE.FETCH_LIST_SUCCESS:
-            console.log(action.data);
             return {...state , loading:false , courseList:action.data};
         default:
             return state;
