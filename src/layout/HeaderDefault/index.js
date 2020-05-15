@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { classPrefixor } from "../../utils/classPrefixor";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
@@ -7,42 +7,52 @@ import { Menu, Dropdown } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { CREDENTIAL_TYPE } from "../../constants/userConstants";
 
+const prefix = "header";
+const c = classPrefixor(prefix);
 const Header = () => {
-  const prefix = "header";
-  const c = classPrefixor(prefix);
   const [count, setCount] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
   const { credentials } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
-
   const handleLogOut = () => {
     localStorage.removeItem("credentials");
     dispatch({
       type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
       data: "",
     });
+    setIsLogin(false);
   };
-  const menu = (
-    <Menu>
-      <Menu.Item key="0">
-        <NavLink to="/signin">Sign In</NavLink>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="1">
-        <NavLink to="/signup">Sign Up</NavLink>
-      </Menu.Item>
-    </Menu>
-  );
-  const menuAccount = (
-    <Menu>
-      <Menu.Item key="0">
-        <NavLink to="/account">Your Account</NavLink>
-      </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="1">
-        <Nav.Link onClick={() => handleLogOut()}>Log Out</Nav.Link>
-      </Menu.Item>
-    </Menu>
-  );
+  useEffect(() => {
+    if (Object.keys(credentials).length > 0) {
+      setIsLogin(true);
+    }
+  }, [credentials]);
+
+  const menu = (isLogin) => {
+    return (
+      <>
+        <Menu>
+          <Menu.Item key="0">
+            {!isLogin ? (
+              <NavLink to="/signin">Sign In</NavLink>
+            ) : (
+              <NavLink to="/account">Your Account</NavLink>
+            )}
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="1">
+            {!isLogin ? (
+              <NavLink to="/signup">Sign Up</NavLink>
+            ) : (
+              <Nav.Link onClick={() => handleLogOut()} className="p-0">
+                Log Out
+              </Nav.Link>
+            )}
+          </Menu.Item>
+        </Menu>
+      </>
+    );
+  };
 
   return (
     <header className={prefix}>
@@ -71,31 +81,21 @@ const Header = () => {
                 <NavLink to="/contact"> Contact</NavLink>
               </Nav.Item>
             </Nav>
-            {Object.keys(credentials).length > 0 ? (
-              <Nav.Item>
-                <Dropdown overlay={menuAccount}>
-                  <Button
-                    style={{ display: "flex", justifyContent: "center" }}
-                    className="ant-dropdown-link"
-                  >
-                    <span>Hi, {credentials.taiKhoan}</span>
-                  </Button>
-                </Dropdown>
-              </Nav.Item>
-            ) : (
-              <Nav.Item>
-                <Dropdown overlay={menu}>
-                  <Button
-                    style={{ display: "flex", justifyContent: "center" }}
-                    className="ant-dropdown-link"
-                  >
-                    <UserOutlined className="mt-1 mr-2" />
+            <Nav.Item>
+              <Dropdown overlay={menu(isLogin)}>
+                <Button
+                  style={{ display: "flex", justifyContent: "center" }}
+                  className="ant-dropdown-link"
+                >
+                  {!isLogin && <UserOutlined className="mt-1 mr-2" />}
+                  {!isLogin ? (
                     <span>SignIn / SignUp</span>
-                  </Button>
-                </Dropdown>
-              </Nav.Item>
-            )}
-
+                  ) : (
+                    <span>Hi, {credentials.taiKhoan}</span>
+                  )}
+                </Button>
+              </Dropdown>
+            </Nav.Item>
             <Nav.Item className={c`cart`}>
               <ShoppingCartOutlined
                 style={{ fontSize: "25px" }}

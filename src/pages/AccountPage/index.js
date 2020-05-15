@@ -1,12 +1,15 @@
-import React from 'react'
-import AccountContainer from '../../components/AccountContainer'
+import React from "react";
+import AccountContainer from "../../components/AccountContainer";
+import UserLayout from "../../layout/UserLayout";
 
 const AccountPage = () => {
-    return (
-        <>
-            <AccountContainer/>
-        </>
-    )
-}
+  return (
+    <>
+      <UserLayout>
+        <AccountContainer />
+      </UserLayout>
+    </>
+  );
+};
 
-export default AccountPage
+export default AccountPage;

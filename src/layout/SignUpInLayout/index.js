@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderReference from '../HeaderReference'
 
-const SignUpInLayout = (props) => {
+const SignUpInLayout = (props) => {    
     return (
         <>
             <HeaderReference/>

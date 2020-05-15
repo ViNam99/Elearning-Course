@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import SignUpInLayout from "../../layout/SignUpInLayout";
 
 const SignUpPage = () => {
-    return (
-        <div>
-            <h1>SignUp</h1>
-        </div>
-    )
-}
+  return (
+    <SignUpInLayout>
+      <h1>SignUp</h1>
+    </SignUpInLayout>
+  );
+};
 
-export default SignUpPage
+export default SignUpPage;

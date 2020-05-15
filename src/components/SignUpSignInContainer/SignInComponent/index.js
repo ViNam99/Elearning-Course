@@ -2,25 +2,26 @@ import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { classPrefixor } from "../../../utils/classPrefixor";
 import { Form, Input, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInAction } from "../../../actions/userAction";
 
 const prefix = "signIn";
 const c = classPrefixor(prefix);
-const SignInComponent = ({ props }) => {
+
+const SignInComponent = () => {
   const dispatch = useDispatch();
   const { credentials, err } = useSelector((state) => state.userReducer);
-
+  let history = useHistory();
   const handleLoginSuccess = () => {
-    props.history.replace("/");
+    history.replace("/");
   };
   useEffect(() => {
     if (Object.keys(credentials).length !== 0) {
-      props.history.push("/");
+      history.push("/");
     }
   }, [credentials]);
-  const onFinish = (values) => {    
+  const onFinish = (values) => {
     dispatch(signInAction(values, handleLoginSuccess));
   };
   return (

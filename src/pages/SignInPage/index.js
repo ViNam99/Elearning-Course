@@ -1,10 +1,13 @@
 import React from "react";
 import SignInComponent from "../../components/SignUpSignInContainer/SignInComponent";
+import SignUpInLayout from "../../layout/SignUpInLayout";
 
-const SignInPage = (props) => {
+const SignInPage = () => {  
   return (
     <>
-      <SignInComponent props={props} />
+      <SignUpInLayout>
+        <SignInComponent />
+      </SignUpInLayout>
     </>
   );
 };

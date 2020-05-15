@@ -2,15 +2,10 @@ import React, { useEffect } from "react";
 import "./assets/styles/main.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import UserLayout from "./layout/UserLayout";
-import HomePage from "./pages/HomePage";
-import SignUpInLayout from "./layout/SignUpInLayout";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
-import PageNotFound from "./pages/PageNotFound";
 import { CREDENTIAL_TYPE } from "./constants/userConstants";
-import AccountPage from "./pages/AccountPage";
+
 import { setAuthorization } from "./utils/axios";
+import { routes } from "./utils/routes";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,24 +20,26 @@ const App = () => {
       });
     }
   }, []);
+  const showContentMenu = (routes) => {
+    if (routes.length > 0) {
+      return routes.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.main}
+          />
+        );
+      });
+    }
+  };
   return (
-    <Router>
-      <Switch>
-        <SignUpInLayout path="/signin">
-          <Route path="/signin" component={SignInPage} />
-        </SignUpInLayout>
-        <SignUpInLayout path="/signup">
-          <Route path="/signup" component={SignUpPage} />
-        </SignUpInLayout>
-        <UserLayout path="/">
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/account" component={AccountPage} />
-          </Switch>
-        </UserLayout>
-        <Route path="" component={PageNotFound} />
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Switch>{showContentMenu(routes)}</Switch>
+      </Router>
+    </>
   );
 };
 
