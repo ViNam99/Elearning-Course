@@ -9,21 +9,22 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import PageNotFound from "./pages/PageNotFound";
 import { CREDENTIAL_TYPE } from "./constants/userConstants";
-import jwtDecode  from 'jwt-decode';
+import AccountPage from "./pages/AccountPage";
+import { setAuthorization } from "./utils/axios";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const credentialToken = JSON.parse(localStorage.getItem("credentials"));
-    if (credentialToken) {
-      const dataDecode = jwtDecode(credentialToken);      
+    const credentialInfo = JSON.parse(localStorage.getItem("credentials"));
+    if (credentialInfo) {
+      setAuthorization(credentialInfo.accessToken);
       dispatch({
         type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
-        data: dataDecode,
+        data: credentialInfo,
       });
     }
-  }, [dispatch]);
+  }, []);
   return (
     <Router>
       <Switch>
@@ -33,12 +34,13 @@ const App = () => {
         <SignUpInLayout path="/signup">
           <Route path="/signup" component={SignUpPage} />
         </SignUpInLayout>
-        <UserLayout exact path="/">
+        <UserLayout path="/">
           <Switch>
-            <Route path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage} />
+            <Route path="/account" component={AccountPage} />
           </Switch>
         </UserLayout>
-        <Route component={PageNotFound} />
+        <Route path="" component={PageNotFound} />
       </Switch>
     </Router>
   );

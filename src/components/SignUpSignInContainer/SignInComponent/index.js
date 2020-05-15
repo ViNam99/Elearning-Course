@@ -20,7 +20,7 @@ const SignInComponent = ({ props }) => {
       props.history.push("/");
     }
   }, [credentials]);
-  const onFinish = (values) => {
+  const onFinish = (values) => {    
     dispatch(signInAction(values, handleLoginSuccess));
   };
   return (
