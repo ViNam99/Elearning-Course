@@ -7,6 +7,13 @@ class UserService {
       data: user,
     });
   };
+  signUp = (data) => {
+    return axios.request({
+      method: "POST",
+      url: "QuanLyNguoiDung/DangKy",
+      data,
+    });
+  };
   getPerInfor = (info) => {
     return axios.request({
       method: "POST",

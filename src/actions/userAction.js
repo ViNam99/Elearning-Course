@@ -3,7 +3,7 @@ import { userService } from "../services";
 import { setAuthorization } from "../utils/axios";
 export const signInAction = (user, loginSuccess) => (dispatch) => {
   dispatch({
-    type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_REQUEST,
+    type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_REQUEST,
   });
 
   userService
@@ -12,17 +12,22 @@ export const signInAction = (user, loginSuccess) => (dispatch) => {
       setAuthorization(res.data.accessToken);
       localStorage.setItem("credentials", JSON.stringify(res.data));
       dispatch({
-        type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
+        type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_SUCCESS,
         data: res.data,
       });
       loginSuccess();
     })
     .catch((err) => {
       dispatch({
-        type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_FAILURE,
+        type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_FAILURE,
         data: err.response.data,
       });
     });
+};
+export const signUpAction = (data) => (dispatch) => {
+  dispatch({
+    type: CREDENTIAL_TYPE,
+  });
 };
 export const getPerInforAction = (info) => (dispatch) => {
   dispatch({

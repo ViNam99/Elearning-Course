@@ -17,7 +17,7 @@ const Header = () => {
   const handleLogOut = () => {
     localStorage.removeItem("credentials");
     dispatch({
-      type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
+      type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_SUCCESS,
       data: "",
     });
     setIsLogin(false);

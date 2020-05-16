@@ -15,7 +15,7 @@ const App = () => {
     if (credentialInfo) {
       setAuthorization(credentialInfo.accessToken);
       dispatch({
-        type: CREDENTIAL_TYPE.FETCH_CREDENTIAL_SUCCESS,
+        type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_SUCCESS,
         data: credentialInfo,
       });
     }
