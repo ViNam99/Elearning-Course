@@ -26,8 +26,23 @@ export const signInAction = (user, loginSuccess) => (dispatch) => {
 };
 export const signUpAction = (data) => (dispatch) => {
   dispatch({
-    type: CREDENTIAL_TYPE,
+    type: CREDENTIAL_TYPE.SIGNUP_CREDENTIAL_REQUEST,
   });
+
+  userService
+    .signUp(data)
+    .then((res) => {
+      dispatch({
+        type: CREDENTIAL_TYPE.SIGNUP_CREDENTIAL_SUCCESS,
+        data: res,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: CREDENTIAL_TYPE.SIGNUP_CREDENTIAL_FAILURE,
+        data: err.response.data,
+      });
+    });
 };
 export const getPerInforAction = (info) => (dispatch) => {
   dispatch({

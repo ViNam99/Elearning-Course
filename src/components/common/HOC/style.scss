@@ -1,0 +1,106 @@
+.Notification {
+  text-shadow: 0.4px 0.4px 5px rgba(0, 0, 0, 0.2);
+  .ant-notification.ant-notification {
+    padding: 0;
+    margin: 0;
+
+    .ant-notification-notice-closable {
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+        0px 4px 24px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+    }
+
+    .ant-notification-notice.ant-notification-notice {
+      padding: 0;
+      margin: 0;
+      // left: 6%;
+    }
+
+    .ant-notification-notice.ant-notification-notice {
+      width: 336px;
+      min-height: 72px;
+
+      overflow: hidden;
+      position: relative;
+      .ant-notification-notice-content {
+        width: 100%;
+        height: 100%;
+
+        user-select: none;
+        .ant-notification-notice-with-icon {
+          width: 100%;
+          height: 100%;
+          padding: 1rem;
+
+          display: flex;
+          flex-direction: column;
+
+          font-family: Roboto, sans-serif;
+          font-style: normal;
+          color: #ffffff;
+          .ant-notification-notice-icon {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+          }
+          .ant-notification-notice-message {
+            margin-left: 40px;
+
+            font-size: 20 / 14 + em;
+            font-weight: 500;
+            line-height: 23px;
+
+            color: #ffffff;
+          }
+          .ant-notification-notice-description {
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+
+    .ant-notification-notice.ant-notification-notice.notice--BIG {
+      width: 270px;
+      min-height: 144px;
+      .ant-notification-notice-content {
+        .ant-notification-notice-with-icon {
+          .ant-notification-notice-message {
+            font-size: 25 / 14 + em;
+          }
+          .ant-notification-notice-description {
+            font-size: 19 / 14 + em;
+          }
+        }
+      }
+    }
+
+    .ant-notification-notice.ant-notification-notice.notice--SMALL {
+      min-width: 270px;
+      min-height: 1px;
+      .ant-notification-notice-content {
+        .ant-notification-notice-with-icon {
+          .ant-notification-notice-message {
+            display: none;
+          }
+          .ant-notification-notice-description {
+            font-size: 12 / 14 + em;
+          }
+        }
+      }
+    }
+
+    .ant-notification-notice-close.ant-notification-notice-close {
+      display: none;
+    }
+  }
+
+  .ant-notification-topRight.ant-notification-topRight,
+  .ant-notification-topLeft.ant-notification-topLeft {
+    margin-top: 4rem;
+  }
+
+  .ant-notification-topRight.ant-notification-bottomLeft,
+  .ant-notification-topLeft.ant-notification-topLeft {
+    margin-left: 2rem;
+  }
+}

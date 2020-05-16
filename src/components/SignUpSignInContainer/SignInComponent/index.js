@@ -1,17 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { classPrefixor } from "../../../utils/classPrefixor";
 import { Form, Input, Button } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInAction } from "../../../actions/userAction";
+import withNotification from "../../common/HOC/withNotification";
+import { CREDENTIAL_TYPE } from "../../../constants/userConstants";
 
 const prefix = "signIn";
 const c = classPrefixor(prefix);
 
-const SignInComponent = () => {
+const SignInComponent = (props) => {
   const dispatch = useDispatch();
-  const { credentials, err } = useSelector((state) => state.userReducer);
+  const [form] = Form.useForm();
+  const { credentials, err, status, currentAccount } = useSelector(
+    (state) => state.userReducer
+  );
   let history = useHistory();
   const handleLoginSuccess = () => {
     history.replace("/");
@@ -21,6 +26,22 @@ const SignInComponent = () => {
       history.push("/");
     }
   }, [credentials]);
+  useEffect(() => {
+    if (status === 200) {
+      props.showNotification({
+        type: "SUCCESS",
+        message: "Tạo tài khoản thành công",
+      });
+      form.setFieldsValue({
+        taiKhoan: currentAccount.taiKhoan,
+        matKhau: currentAccount.matKhau,
+      });
+    }
+    dispatch({
+      type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_FAILURE,
+      data: "",
+    });
+  }, [currentAccount]);
   const onFinish = (values) => {
     dispatch(signInAction(values, handleLoginSuccess));
   };
@@ -42,6 +63,7 @@ const SignInComponent = () => {
       },
     },
   };
+
   return (
     <section className={prefix}>
       <Container className={c`form`}>
@@ -51,9 +73,16 @@ const SignInComponent = () => {
           </Col>
           <Col lg="6" className={c`form__right`}>
             <div className={c`form__right--inside`}>
-              <Form className="login" onFinish={onFinish} {...formItemLayout}>
+              <Form
+                className="login"
+                onFinish={onFinish}
+                {...formItemLayout}
+                form={form}
+              >
                 <h3 className="text-center p-4">Login Your Account</h3>
-                <p className="text-center text-danger">{err}</p>
+                {!Object.keys(currentAccount).length > 0 && (
+                  <p className="text-center text-danger">{err}</p>
+                )}
                 <Form.Item
                   label="UserName"
                   name="taiKhoan"
@@ -99,4 +128,4 @@ const SignInComponent = () => {
   );
 };
 
-export default SignInComponent;
+export default withNotification(SignInComponent);

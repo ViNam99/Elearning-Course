@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { classPrefixor } from "../../../utils/classPrefixor";
 import { Form, Input, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpAction } from "../../../actions/userAction";
+import { RGX } from "../../../core/validations";
 const prefix = "signUp";
 const c = classPrefixor(prefix);
 const SignUpComponent = () => {
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { status, currentAccount, err } = useSelector(
+    (state) => state.userReducer
+  );
+  useEffect(() => {
+    if (status === 200) {
+      history.replace("/signin");
+    }
+  }, [currentAccount]);
   const formItemLayout = {
     labelCol: {
       xs: {
@@ -36,6 +50,7 @@ const SignUpComponent = () => {
       },
     },
   };
+
   const onFinish = (values) => {
     const dataSubmit = {
       taiKhoan: values.taiKhoan,
@@ -45,7 +60,8 @@ const SignUpComponent = () => {
       maNhom: "GP01",
       email: values.email,
     };
-    console.log(dataSubmit);
+    dispatch(signUpAction(dataSubmit));
+    form.resetFields();
   };
   return (
     <>
@@ -60,11 +76,13 @@ const SignUpComponent = () => {
                 <Form
                   className="register"
                   onFinish={onFinish}
+                  form={form}
                   {...formItemLayout}
                 >
                   <h3 className="text-center p-4">Register Your Account</h3>
+                  <p className="text-center text-danger">{err}</p>
                   <Form.Item
-                    label="UserName"
+                    label="User Name"
                     name="taiKhoan"
                     rules={[
                       {
@@ -77,14 +95,20 @@ const SignUpComponent = () => {
                   </Form.Item>
 
                   <Form.Item
-                    label="PassWord"
                     name="matKhau"
+                    label="Password"
                     rules={[
+                      {
+                        pattern: RGX.PASSWORD_STRONG_RGX,
+                        message:
+                          "Password must be at least six characters, at least one uppercase letter, one letter and one number and at least one special character.",
+                      },
                       {
                         required: true,
                         message: "Please input your password!",
                       },
                     ]}
+                    hasFeedback
                   >
                     <Input.Password />
                   </Form.Item>
@@ -99,7 +123,7 @@ const SignUpComponent = () => {
                         message: "Please confirm your password!",
                       },
                       ({ getFieldValue }) => ({
-                        validator(rule, value) {
+                        validator(_, value) {
                           if (!value || getFieldValue("matKhau") === value) {
                             return Promise.resolve();
                           }
@@ -118,6 +142,10 @@ const SignUpComponent = () => {
                     name="hoTen"
                     rules={[
                       {
+                        pattern: RGX.NAME_RGX,
+                        message: "The input is not valid Name!",
+                      },
+                      {
                         required: true,
                         message: "Please input your FullName!",
                       },
@@ -126,9 +154,13 @@ const SignUpComponent = () => {
                     <Input />
                   </Form.Item>
                   <Form.Item
-                    label="PhoneNumber"
+                    label="Phone Number"
                     name="soDT"
                     rules={[
+                      {
+                        pattern: RGX.PHONE_NUMBER_RGX,
+                        message: "The input is not valid Phone Number!",
+                      },
                       {
                         required: true,
                         message: "Please input your Phone Number!",
