@@ -37,7 +37,7 @@ const SignInComponent = () => {
                 <h3 className="text-center p-4">Login Your Account</h3>
                 <p className="text-center text-danger">{err}</p>
                 <Form.Item
-                  label="Username"
+                  label="UserName"
                   name="taiKhoan"
                   rules={[
                     {
