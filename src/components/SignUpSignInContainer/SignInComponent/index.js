@@ -24,6 +24,24 @@ const SignInComponent = () => {
   const onFinish = (values) => {
     dispatch(signInAction(values, handleLoginSuccess));
   };
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 6,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 24,
+      },
+    },
+  };
   return (
     <section className={prefix}>
       <Container className={c`form`}>
@@ -33,7 +51,7 @@ const SignInComponent = () => {
           </Col>
           <Col lg="6" className={c`form__right`}>
             <div className={c`form__right--inside`}>
-              <Form className="login" onFinish={onFinish}>
+              <Form className="login" onFinish={onFinish} {...formItemLayout}>
                 <h3 className="text-center p-4">Login Your Account</h3>
                 <p className="text-center text-danger">{err}</p>
                 <Form.Item
