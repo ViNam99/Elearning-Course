@@ -7,12 +7,10 @@ const AccountContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPerInforAction(credentials));
-  }, [credentials]);
+  }, [credentials, dispatch]);
   return (
     <section>
-      <Container>
-        <h1 className="p-5"></h1>
-      </Container>
+      <Container></Container>
     </section>
   );
 };

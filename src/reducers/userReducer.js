@@ -4,14 +4,20 @@ const initialState = {
   credentials: {},
   currentAccount: {},
   status: null,
+  statusLoginSuccess: null,
   err: null,
 };
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_SUCCESS:
+      let credentials = { ...state.credentials };
+      action.data.status === undefined
+        ? (credentials = action.data)
+        : (credentials = action.data.data);
       return {
         ...state,
-        credentials: action.data,
+        credentials,
+        statusLoginSuccess: action.data.status,
       };
     case CREDENTIAL_TYPE.SIGNUP_CREDENTIAL_SUCCESS:
       return {
@@ -20,7 +26,6 @@ const userReducer = (state = initialState, action) => {
         status: action.data.status,
       };
     case CREDENTIAL_TYPE.SIGNUP_CREDENTIAL_FAILURE:
-      console.log(action.data);
       return { ...state, err: action.data };
 
     case CREDENTIAL_TYPE.FETCH_PERSONAL_INFO_SUCCESS:

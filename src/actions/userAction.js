@@ -13,7 +13,7 @@ export const signInAction = (user, loginSuccess) => (dispatch) => {
       localStorage.setItem("credentials", JSON.stringify(res.data));
       dispatch({
         type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_SUCCESS,
-        data: res.data,
+        data: res,
       });
       loginSuccess();
     })

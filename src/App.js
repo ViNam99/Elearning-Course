@@ -9,7 +9,6 @@ import { routes } from "./utils/routes";
 
 const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     const credentialInfo = JSON.parse(localStorage.getItem("credentials"));
     if (credentialInfo) {
@@ -19,7 +18,8 @@ const App = () => {
         data: credentialInfo,
       });
     }
-  }, []);
+  }, [dispatch]);
+
   const showContentMenu = (routes) => {
     if (routes.length > 0) {
       return routes.map((route, index) => {

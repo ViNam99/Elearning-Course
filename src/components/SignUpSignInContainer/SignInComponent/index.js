@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { classPrefixor } from "../../../utils/classPrefixor";
 import { Form, Input, Button } from "antd";
@@ -21,11 +21,12 @@ const SignInComponent = (props) => {
   const handleLoginSuccess = () => {
     history.replace("/");
   };
+
   useEffect(() => {
     if (Object.keys(credentials).length !== 0) {
       history.push("/");
     }
-  }, [credentials]);
+  }, [credentials, history]);
   useEffect(() => {
     if (status === 200) {
       props.showNotification({
@@ -41,7 +42,7 @@ const SignInComponent = (props) => {
       type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_FAILURE,
       data: "",
     });
-  }, [currentAccount]);
+  }, [currentAccount, dispatch, form, props, status]);
   const onFinish = (values) => {
     dispatch(signInAction(values, handleLoginSuccess));
   };
