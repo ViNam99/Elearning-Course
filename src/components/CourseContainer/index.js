@@ -1,11 +1,11 @@
-import React from 'react'
-import BannerComponent from './BannerComponent';
+import React from "react";
+import BannerComponent from "./BannerComponent";
 const CourseContainer = () => {
-    return (
-        <>
-            <BannerComponent/>
-        </>
-    )
-}
+  return (
+    <>
+      <BannerComponent />
+    </>
+  );
+};
 
-export default CourseContainer
+export default CourseContainer;
