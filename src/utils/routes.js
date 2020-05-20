@@ -5,6 +5,7 @@ import AccountPage from "../pages/AccountPage";
 import SignInPage from "../pages/SignInPage";
 import SignUpPage from "../pages/SignUpPage";
 import PageNotFound from "../pages/PageNotFound";
+import CoursePage from "../pages/CoursePage";
 
 export const routes = [
   {
@@ -26,6 +27,11 @@ export const routes = [
     path: "/signup",
     exact: false,
     main: () => <SignUpPage />,
+  },
+  {
+    path: "/courses",
+    exact: false,
+    main: () => <CoursePage />,
   },
   {
     path: "",
