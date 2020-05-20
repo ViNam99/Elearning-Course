@@ -16,7 +16,7 @@ const HomePage = (props) => {
         message: `Chào Mừng Bạn ${credentials.hoTen} Đến Với EDUMARK`,
       });
     }
-  }, [credentials.hoTen, props, statusLoginSuccess]);
+  }, [statusLoginSuccess]);
   return (
     <>
       <UserLayout>

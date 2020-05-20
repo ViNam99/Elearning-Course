@@ -19,7 +19,7 @@ const SignUpComponent = () => {
     if (status === 200) {
       history.replace("/signin");
     }
-  }, [currentAccount, history, status]);
+  }, [currentAccount]);
   const formItemLayout = {
     labelCol: {
       xs: {

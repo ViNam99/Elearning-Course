@@ -26,7 +26,7 @@ const SignInComponent = (props) => {
     if (Object.keys(credentials).length !== 0) {
       history.push("/");
     }
-  }, [credentials, history]);
+  }, [credentials]);
   useEffect(() => {
     if (status === 200) {
       props.showNotification({
@@ -42,7 +42,7 @@ const SignInComponent = (props) => {
       type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_FAILURE,
       data: "",
     });
-  }, [currentAccount, dispatch, form, props, status]);
+  }, [currentAccount]);
   const onFinish = (values) => {
     dispatch(signInAction(values, handleLoginSuccess));
   };

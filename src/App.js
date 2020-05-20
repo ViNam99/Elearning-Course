@@ -18,7 +18,7 @@ const App = () => {
         data: credentialInfo,
       });
     }
-  }, [dispatch]);
+  }, []);
 
   const showContentMenu = (routes) => {
     if (routes.length > 0) {

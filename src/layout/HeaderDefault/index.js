@@ -18,7 +18,7 @@ const Header = () => {
     localStorage.removeItem("credentials");
     dispatch({
       type: CREDENTIAL_TYPE.SIGNIN_CREDENTIAL_SUCCESS,
-      data: "",
+      data: {},
     });
     setIsLogin(false);
   };
