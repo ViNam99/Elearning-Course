@@ -1,10 +1,10 @@
 import React from "react";
 import { Pagination } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { PAGE_TYPE } from "../../constants/pageConstant";
 const PaginationComponent = ({ ...props }) => {
-  const { totalCount, pageSize, currentPage } = props;  
-  const totalPage = Math.ceil(totalCount / pageSize);  
+  const { totalCount, pageSize, currentPage } = props;
+  const totalPage = Math.ceil(totalCount / pageSize);
   const dispatch = useDispatch();
   const onChange = (page) => {
     dispatch({

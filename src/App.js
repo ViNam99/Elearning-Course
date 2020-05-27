@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import "./assets/styles/main.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
