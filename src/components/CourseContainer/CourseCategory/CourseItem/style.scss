@@ -1,0 +1,100 @@
+.courseItemCategory {
+  .card {
+    .card-body {
+      h4 {
+        @include styleText(
+          $default-color-black !important,
+          $fontSize-1,
+          $default-fontWeight
+        );
+        transition: all 0.5s;
+      }
+
+      padding: $padding-1 0;
+      span {
+        margin-left: 5px;
+      }
+      height: 150px;
+    }
+    .card-footer {
+      background-color: $color-white-0;
+      border: none;
+      margin-top: 15px;
+    }
+    &:hover h4 {
+      @include styleText(
+        $color-blue-0 !important,
+        $fontSize-1,
+        $default-fontsize
+      );
+      cursor: pointer;
+    }
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 1px 1px 4px 4px #ccc;
+      transform: scale(1.1);
+    }
+  }
+
+  &__btn {
+    @include styleButton(
+      $color-white-0 !important,
+      $color-blue-0 !important,
+      $padding-1 !important,
+      $padding-2 !important,
+      $bdRad-1 !important
+    );
+    @include styleText(
+      $color-blue-0 !important,
+      $default-fontsize !important,
+      $default-fontsize !important
+    );
+
+    &:hover {
+      @include styleButton(
+        $color-blue-0 !important,
+        $color-blue-0 !important,
+        $padding-1 !important,
+        $padding-2 !important,
+        $bdRad-1 !important
+      );
+      @include styleText(
+        $color-white-0 !important,
+        $default-fontsize !important,
+        $default-fontsize !important
+      );
+      transition: all 0.5s;
+    }
+  }
+  &__btn2 {
+    margin-left: $margin-1;
+    @include styleButton(
+      $color-blue-0 !important,
+      $color-white-0 !important,
+      $padding-1 !important,
+      $padding-2 !important,
+      $bdRad-1 !important
+    );
+    @include styleText(
+      $color-white-0 !important,
+      $default-fontsize !important,
+      $default-fontsize !important
+    );
+
+    &:hover {
+      @include styleButton(
+        $color-white-0 !important,
+        $color-blue-0 !important,
+        $padding-1 !important,
+        $padding-2 !important,
+        $bdRad-1 !important
+      );
+      @include styleText(
+        $color-blue-0 !important,
+        $default-fontsize !important,
+        $default-fontsize !important
+      );
+      transition: all 0.5s;
+    }
+  }
+}

@@ -18,7 +18,7 @@ const BannerComponent = () => {
                 In the history of modern astronomy, there is probably no one
                 greater leap forward than the building.
               </p>
-              <span class="box">
+              <span className="box">
                 <NavLink exact to="/">
                   Home
                 </NavLink>

@@ -20,3 +20,25 @@ export const fetchCourseListAction = () => (dispatch) => {
       });
     });
 };
+export const fetchCourseSliceListAction = (currentPage, pageSize) => (
+  dispatch
+) => {
+  dispatch({
+    type: COURSES_TYPE.FETCH_LIST_SLICE_REQUEST,
+  });
+
+  courseService
+    .fetchCourseSliceList(currentPage, pageSize)
+    .then((res) => {
+      dispatch({
+        type: COURSES_TYPE.FETCH_LIST_SLICE_SUCCESS,
+        data: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: COURSES_TYPE.FETCH_LIST_SLICE_FAILURE,
+        data: err,
+      });
+    });
+};
