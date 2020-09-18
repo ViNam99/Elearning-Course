@@ -25,7 +25,6 @@ const CoursesCategory = () => {
     dispatch(fetchCourseCategoryAction());
   }, []);
   const renderCourseCategory = () => {
-    debugger
     return courseCategory.map((courseList, index) => {
       return (
         <Nav.Link

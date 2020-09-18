@@ -1,7 +1,9 @@
 import React from "react";
 import UserLayout from "../../layout/UserLayout";
 import HomeContainer from "../../components/HomeContainer";
-const HomePage = () => {
+import withNotification from "../../components/common/HOC/withNotification";
+
+const HomePage = (props) => {
   return (
     <>
       <UserLayout>
@@ -11,4 +13,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default withNotification(HomePage);

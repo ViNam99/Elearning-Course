@@ -7,18 +7,28 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpAction } from "../../../actions/userAction";
 import { RGX } from "../../../core/validations";
+import withNotification from "../../common/HOC/withNotification";
+
 const prefix = "signUp";
 const c = classPrefixor(prefix);
-const SignUpComponent = () => {
+const SignUpComponent = (props) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const history = useHistory();
   const { status, currentAccount, err } = useSelector(
     (state) => state.userReducer
   );
+  
   useEffect(() => {
     if (status === 200) {
-      history.replace("/signin");
+      props.showNotification({
+        type: "SUCCESS",
+        message: "Tạo tài khoản thành công",
+      });
+
+      setTimeout(() => {
+        history.replace("/signin");
+      }, 1000);
     }
   }, [currentAccount]);
   const formItemLayout = {
@@ -204,4 +214,4 @@ const SignUpComponent = () => {
   );
 };
 
-export default SignUpComponent;
+export default withNotification(SignUpComponent);

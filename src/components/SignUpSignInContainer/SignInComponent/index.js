@@ -15,25 +15,36 @@ const c = classPrefixor(prefix);
 const SignInComponent = (props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const { credentials, err, status, currentAccount } = useSelector(
-    (state) => state.userReducer
-  );
+  const {
+    credentials,
+    err,
+    status,
+    currentAccount,
+    statusLoginSuccess,
+  } = useSelector((state) => state.userReducer);
+
   let history = useHistory();
   const handleLoginSuccess = () => {
-    history.replace("/");
+    // history.push("/");
   };
 
   useEffect(() => {
     if (Object.keys(credentials).length !== 0) {
-      history.push("/");
+      if (statusLoginSuccess === 200) {
+        props.showNotification({
+          type: "SUCCESS",
+          message: `Chào Mừng Bạn ${credentials.hoTen} Đến Với EDUMARK`,
+        });
+      }
+
+      setTimeout(() => {
+        history.push("/");
+      }, 1000);
     }
   }, [credentials]);
+
   useEffect(() => {
     if (status === 200) {
-      props.showNotification({
-        type: "SUCCESS",
-        message: "Tạo tài khoản thành công",
-      });
       form.setFieldsValue({
         taiKhoan: currentAccount.taiKhoan,
         matKhau: currentAccount.matKhau,
@@ -44,6 +55,7 @@ const SignInComponent = (props) => {
       data: "",
     });
   }, [currentAccount]);
+
   const onFinish = (values) => {
     dispatch(signInAction(values, handleLoginSuccess));
   };

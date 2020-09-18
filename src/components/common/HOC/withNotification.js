@@ -1,38 +1,45 @@
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { useRef, useEffect } from "react";
 
-import { notification } from 'antd';
+import { notification } from "antd";
 
-import successIcon from '../../../assets/svg/success_outline.svg';
-import errorIcon from '../../../assets/svg/error_outline.svg';
-import warningIcon from '../../../assets/svg/warning_outline.svg';
+import successIcon from "../../../assets/svg/success_outline.svg";
+import errorIcon from "../../../assets/svg/error_outline.svg";
+import warningIcon from "../../../assets/svg/warning_outline.svg";
+const withNotification = (Component) => (props) => {
+  const notiRef = useRef(null);
 
-const withNotification = Component => props => {
-  const renderStyle = type => {
+  useEffect(() => {
+    return () => {
+      notification.destroy();
+    };
+  }, []);
+
+  const renderStyle = (type) => {
     switch (type) {
-      case 'SUCCESS':
+      case "SUCCESS":
         return {
-          title: 'SUCCESS',
-          background: '#27AE60',
-          url: successIcon
+          title: "SUCCESS",
+          background: "#27AE60",
+          url: successIcon,
         };
-      case 'ERROR':
+      case "ERROR":
         return {
-          title: 'ERROR',
-          background: '#EB5757',
-          url: errorIcon
+          title: "ERROR",
+          background: "#EB5757",
+          url: errorIcon,
         };
-      case 'WARNING':
+      case "WARNING":
         return {
-          title: 'WARNING',
-          background: '#F2C94C',
-          url: warningIcon
+          title: "WARNING",
+          background: "#F2C94C",
+          url: warningIcon,
         };
       default:
         return {
-          title: '',
-          background: '#27AE60',
-          url: ''
+          title: "",
+          background: "#27AE60",
+          url: "",
         };
     }
   };
@@ -43,33 +50,32 @@ const withNotification = Component => props => {
     type,
     size,
     width,
-    height
+    height,
   }) => {
     notification.config({
       duration: 2,
       placement,
-      getContainer: () => document.getElementById('Notification')
+      getContainer: () => notiRef.current,
     });
     notification.open({
-      className: `${size ? `notice--${size}` : ''} ${
-        placement ? `notice--${placement}` : ''
+      className: `${size ? `notice--${size}` : ""} ${
+        placement ? `notice--${placement}` : ""
       }`,
-      message: type || '',
+      message: type || "",
       description: message,
       icon: <img src={renderStyle(type).url} alt="" />,
       style: {
         background: renderStyle(type).background,
         width,
-        height
-      }
+        height,
+      },
     });
   };
 
   return (
-    <>
+    <div className="Notification" id="Notification" ref={notiRef}>
       <Component {...props} showNotification={showNotification} />
-      <div className="Notification" id="Notification" />
-    </>
+    </div>
   );
 };
 
